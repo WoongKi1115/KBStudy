@@ -1,0 +1,36 @@
+
+  final int a=100; -> 
+    final필드 초기화방법
+        1) 명시적초기화
+        2) 생성자를 이용한 초기화
+
+static final int b=100;->  상수
+
+
+  class Person{
+     final int age; //고정값
+
+      Person(int age){
+          this.age = age;
+     }
+  }
+
+  new Person(20);
+  new Person(30);
+---------------------------------------------
+  class Person{
+     static final int age=100; //고정값
+
+      
+  }
+
+Person.age
+
+
+
+
+
+
+
+
+

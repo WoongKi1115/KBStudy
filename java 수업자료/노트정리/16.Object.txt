@@ -1,0 +1,65 @@
+Object - 속성
+             메소드
+                :  String s= toString() -> 주소값리턴
+                :  boolean b = equals(Object obj) -> 인수로전달된 객체와 주소값비교
+                         ==과 동일 한 기능 함
+
+
+  String - 속성
+             메소드  
+                String s= toString() -> 문자열 리턴
+                boolean b = equals(Object obj) -> 인수로전달된 객체의 문자열과 비교
+  ClassDiagram : 객체와 객체간의 관계를 나타내는것.
+
+ 1)  is a
+        - extends = 상속
+        - implements = 구현(interface)
+
+
+  2) has a
+       - 맴버필드
+       -지역변수
+-------------------------------------
+
+  interface A{
+     메소드 3개
+ }
+
+ interface B{
+    메소드 2개
+}
+
+ interface C extends B{
+    메소드 1개 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

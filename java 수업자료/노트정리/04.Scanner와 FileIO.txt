@@ -1,0 +1,64 @@
+java.util.Scanner
+  - 파일, 입력스트림등에서 데이터를 읽어 구분자로 토큰화하고
+    다앙한 타입으로 형변환 하여 리턴해주는 클래스
+  - 입력 스트림을 다루는 방법을 몰라도 손쉽게 입력처리 가능
+  - 데이터 형변환으로 인한 편리함
+  - 대량의 데이터 처리 시 수행시간 비효율적인 단점 
+  
+  Scanner(File source)
+  Scanner(InputStream source)
+  Scanner(String source)
+  Scanner(File source)
+  
+  
+    :숫자를 입력받을때
+	  int no = xx.nextInt(); //개행문자("\n") 무시
+
+    :문자를 입력받을때
+	 String data = xx.next();  //공백없이 문자열 : 개행문자("\n") 무시
+
+	 String data = xx.nextLine(); //공백이 있는 문자열 경우 
+	 
+-----------------------------------------------------------------------------------
+키보드입력!!!   <---> 모니터출력 
+  System.in                  System.out
+
+  IO는 입출력
+  1) byte단위 => 파일전송, 이미지, 동영상
+        InputStream : byte단위로 읽기
+        OutputStream : byte단위로 쓰기 = 저장
+
+  2) 문자단위  -> 채팅
+        Reader :  문자단위로 읽기
+        Writer :   문자 단위로 쓰기 = 저장
+
+
+   InputStream is = System.in;
+   int i = is.read();//1byte읽기
+
+  byte단위로 읽기 ----> 문자단위로 변경!!!!
+   InputStream    ----> new InputStreamReader(InputStream is) 
+
+
+  문자단위로 읽기           Buffered이용
+  InputStreamReader ---> new BufferedReader(new InputStreamReader(System.in) );
+
+
+
+
+
+
+
+
+
+    
+  ex)
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in) );
+   String data = br.readLine();
+   
+   
+
+    
+	 
+	 
+	 
