@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import com.itskb.ws06.dto.AccountDto;
 import com.itskb.ws06.dto.UserDto;
+import com.itskb.ws06.service.BankService;
 import com.itskb.ws06.service.BankServiceImpl;
 
 public class TestView {
 
 public static void main(String[] args) {
 		
-		BankServiceImpl bankService = new BankServiceImpl();
+		BankService bankService = new BankServiceImpl();
 		System.out.println("1. 모든 계좌정보 조회 ------");
 		print(bankService.getAccountList());
 		

@@ -8,6 +8,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -101,12 +102,15 @@ public class BankServiceImpl implements BankService{
 	@Override
 	public ArrayList<AccountDto> getAccountListSortByBalance() {
 		ArrayList<AccountDto> al = (ArrayList<AccountDto>) accountList.clone();
+		// 이렇게 하면 복사본 생성
+		List<AccountDto> al1 = new ArrayList<>(accountList);
 		Collections.sort(al, new Comparator<AccountDto> () {
 			@Override
 			public int compare(AccountDto a, AccountDto b) {
 				return b.getBalance() - a.getBalance();
 			}
 		});
+		Collections.sort(al1, (AccountDto a, AccountDto b) -> b.getBalance() - a.getBalance());
 		return al;
 	}
 	
@@ -119,7 +123,7 @@ public class BankServiceImpl implements BankService{
 		Collections.sort(al, new Comparator<AccountDto> () {
 			@Override
 			public int compare(AccountDto a, AccountDto b) {
-				return a.getUserSeq() - b.getUserSeq();
+				return  a.getUserSeq() - b.getUserSeq();
 			}
 		});
 		return al;
