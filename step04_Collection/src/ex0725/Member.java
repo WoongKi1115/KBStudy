@@ -51,7 +51,6 @@ public class Member {
 		return builder.toString();
 	}
 	//////////////////////////////////////
-	
 	@Override
 	public int hashCode() {
 		return age + name.hashCode();
