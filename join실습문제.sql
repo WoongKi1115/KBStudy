@@ -1,0 +1,102 @@
+--SCOTT접속 
+
+SELECT * FROM emp;
+SELECT * FROM dept; --부서정보
+SELECT * FROM salgrade; --급여등급
+
+
+-- 1. SMITH 에 대한  정보 검색(ename, emp.deptno, loc .)
+SELECT ENAME, EMP.DEPTNO, LOC
+FROM EMP JOIN DEPT
+ON emp.deptno = dept.deptno
+WHERE ENAME = 'SMITH';
+
+--2. NEW YORK에 근무하는 사원의 이름과 급여를 출력
+SELECT ENAME, SAL
+FROM EMP JOIN DEPT
+USING (DEPTNO)
+WHERE LOC = 'NEW YORK';
+
+-- 3. ACCOUNTING 부서 소속 사원의 이름과 입사일 출력
+SELECT ENAME, HIREDATE
+FROM EMP JOIN DEPT
+USING (DEPTNO)
+WHERE DNAME = 'ACCOUNTING';
+
+-- 4. 직급이 MANAGER인 사원의 이름, 부서명 출력
+SELECT ENAME, DNAME
+FROM EMP JOIN DEPT
+USING (DEPTNO)
+WHERE JOB = 'MANAGER';
+
+-- 5. 사원의 급여가 몇 등급인지를 검색
+SELECT ENAME, SAL, GRADE, LOSAL, HISAL
+FROM EMP JOIN SALGRADE
+ON SAL BETWEEN LOSAL AND HISAL;
+
+-- between A and B
+select * from salgrade;
+select * from emp;
+
+SELECT EMPNO, ENAME, SAL, GRADE, LOSAL, HISAL
+ FROM EMP JOIN salgrade
+ ON SAL BETWEEN LOSAL AND HISAL;
+ 
+
+
+--6. 사원 테이블의 부서 번호로 부서 테이블을 참조해서 부서명, 급여 등급도 검색
+SELECT ENAME, DNAME, GRADE
+FROM EMP JOIN DEPT
+USING (DEPTNO) JOIN SALGRADE
+ON SAL BETWEEN LOSAL AND HISAL;
+
+--7. SMITH의 메니저(mgr) 이름(ename) 검색
+SELECT E2.ENAME 메니저이름
+FROM EMP E1 JOIN EMP E2
+ON E1.MGR = E2.EMPNO
+WHERE E1.ENAME = 'SMITH';
+
+
+--8. 관리자가 KING인 사원들의 이름과 직급(job) 검색
+SELECT E1.ENAME, E1.JOB
+FROM EMP E1 JOIN EMP E2
+ON E1.MGR = E2.EMPNO AND E2.ENAME = 'KING';
+
+--9. SMITH 와 동일한 부서번호(DEPTNO)에서 근무하는 사원의 이름 출력
+-- 단, SMITH 데이터 절대 출력 불가
+SELECT E2.ENAME
+FROM EMP E1 JOIN EMP E2
+ON E1.DEPTNO = E2.DEPTNO
+WHERE E1.ENAME = 'SMITH' AND E2.ENAME != 'SMITH';
+
+--10. SMITH 와 동일한 근무지(LOC)에서 근무하는 사원의 이름 출력
+-- 단, SMITH 데이터 절대 출력 불가
+
+SELECT E1.ENAME, D1.LOC, E2.ENAME, D2.LOC
+FROM 
+(EMP E1 JOIN DEPT D1
+ON E1.DEPTNO = D1.DEPTNO)
+JOIN
+(EMP E2 JOIN DEPT D2
+ON E2.DEPTNO = D2.DEPTNO)
+ON D1.LOC = D2.LOC
+WHERE E1.ENAME = 'SMITH' AND E2.ENAME != 'SMITH';
+
+-- FROM (2개의 테이블을 JOIN한 결과) JOIN (2개의 테이블을 JOIN한 결과)
+
+-- 11, 사원명, 해당 하는 메니저명 검색
+-- 반드시 모든 사원들(CEO포함) 정보 검색
+-- CEO인 경우 메니저 정보 null
+SELECT E1.ENAME, E2.ENAME 메니저명
+FROM EMP E1 LEFT JOIN EMP E2
+ON E1.MGR = E2.EMPNO;
+
+
+
+
+
+
+
+
+
+
