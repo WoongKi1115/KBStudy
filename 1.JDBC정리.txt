@@ -1,0 +1,137 @@
+-JDBC API
+  - java와 database를 연동해주는 api(이미 다 만들어서 lib형태로 제공)
+  - import java.sql.*;
+  - JDBC는 SQLException 예외처리가 필수 이다. - 체크예외종류
+
+  - 연동 순서!!!
+   1) 로드 : 연결하러는 DB를 선택(이때 반드시 DB에 해당하는 드라이버 라이브러리 필요하다 = ~.jar 파일) 
+             Class.forName("연결하러는DB의 드라이버명");  //만약, 드라이버명이 틀리거나 라이브러리가 없으면 ClassNotFoundException발생
+
+              * Oracle : oracle.jdbc.driver.OracleDriver
+                Ms_Sql : sun.jdbc.odbc.JdbcOdbcDriver
+                My_Sql : org.git.mm.mysql.Driver
+
+   2) 연결  : 로드된 DB에 접속하는 과정 = 계정접속
+             Connection con = DriverManager.getConnection(String url , String user, String pass);
+
+
+   3) 실행 : DDL , DML, DQL에 해당하는 쿼리를 실행하는 과정  - 2가지 방법을 제공한다!!!
+         1. Statement 방식
+                 Statement st = con.createStatement();
+                    - DDL , DML문장인경우 
+                       int result = st.executeUpdate(String sql); //인수로 전달된 쿼리의결과가 성공여부인 int로 리턴된다.
+                             * 인수로 전달된 쿼리문장에 오류가 있으면 SQLExcpetion 발생!!
+                             *  결과가 0이면 적용된 레코드수가 없다는 것이고, 1이상이면 적용이되었다!!
+
+                         ex)  int result = st.executeUpdate("delete from copy_emp where deptno=20")
+                               if(result==0)System.out.println("삭제되지 않았습니다.");
+                               else System.out.println("삭제되었습니다.");
+
+                
+                    - select전용
+                     ResultSet rs = st.executeQuery(String sql);//인수로 전달된 문장이 Select인경우 
+                   
+                      ex)  ResultSet rs  = st.executeQuery("select empno, ename, job from emp");
+                             while( rs.next() ){ // next()는 앞으로 커서를 이동(이동이되면 true, 안되면false)
+                                 //열의 값을 조회
+                                 int empno = rs.getInt(1); //인수는 열의순서(index) 
+                                 String ename = rs.getString(2);
+                                 String job = rs.getString("job") //인수는 String으로 컬럼명사용가능
+                                        
+                                 //자바의 객체에 각 셀의 값을 하나 하나 저장 해서 레코드를 자바의 객체로 만든다. 
+                                //한행의 객체를 list에 저장
+  
+                            }
+
+
+
+         2. PreparedStatement방식 - 권장
+               : Statement객체를 상속!!!
+               : 미리 문장을 준비해 놓고 필요한 값만 별도로 setXxx() 설정
+               : sql Injection공격을 방어할수 있는 방식이다.
+
+            PreparedStatement ps = con.prepareStatement(String sql);
+             ex) 
+                  String sql ="select ename from emp";
+                  String sql = "insert into emp(empno, ename, job, sal, hiredate) values(?,?,?,?,sysdate)";
+                  PreparedStatement ps = con.prepareStatement(sql);
+
+              // ?가 있다면 ?의 순서대로 개수만큼 setXxx(순서, 값); 설정을 해야한다.
+                 * insert문장을 예로 든다면,
+                  ps.setInt(1,  emp.getEmptno() );
+                  ps.setString(2, emp.getEname() );
+                  ps.setString(3, emp.getJob() );
+                  ps.setInt(4, emp.getSal() );  
+
+                 *DB에 쿼리를 전송
+                 int result = ps.executeUpdate(); //Insert, update, delete, create인경우
+                 if(result==0)System.out.println("실패...");
+                 else System.out.println("성공");
+
+                 ResultSet rs  = ps.executeQuery(); //select인경우
+                 while(rs.next()){
+
+                  }
+
+
+
+
+   4) 닫기  : 사용한 객체를 반납
+         - close()를 한다.
+         - SQLExeption 처리 필수
+         - finally블럭에서 한다. - try(  ){ }  이 문법을 이용하면 try블럭을 빠져나올때 자동 close된다. 
+
+        ex) Connection, Statement - PreparedStatement , ResultSet 객체를 닫는다.
+
+---------------------------------------------------------------------------------------------------------------
+
+
+* JDBC의 Connection은 기본 autocommit설정되어있다.
+    : setAutoCommit(boolean autocommit) 를 이용해서 설정한다.
+         - autoCommit를 false를 설정하면 반드시 쿼리를 실행한 후에 
+            commit() or rollback()을 해줘야힌다 !!
+        - 단일행 쿼리에서는 기본설정을 사용하지만 일괄처리=transaction처리를 할때는 반드시 설정을 변경해야한다.
+             ex) 주문하기, 예약하기, 계좌이체.....
+
+---------------------------------------------------------
+ java도 securecoding 가이드!! 제공
+  : 행안부에서 pdf 무료배포!!!
+  : 자바를 코딩할때 어떻게 코딩을 해주느냐에 따라 웹의 취약점코드를 제거하고
+    보안을 탄탄하게 만들어주는 코딩스타일을 가이드 
+
+   : OWASP  매년에 전세계적으로 웹의 취약점 top 10을 선정해서
+     공개를한다. 
+
+     : 해킹하는 웹 application프로그램!!  - 무료
+
+=====================================================
+ * Transaction처리
+    : 여러개의 문장을 하나의 단위(Connection)로 묶어서 한번에 일괄처리하는 것.
+        commit() or rollback() 처리 
+
+
+* batch 처리
+   : 방대한 쿼리를 한번에 실행할수 있도록 해주는것.
+     예를 들어 insert문장을 100번실행해야한다면 결국 executeUpdate()를 100번 해야하는데
+     그러면 100번 db를 왔다갔다 하는 형태로 성능에 이슈가 있다.
+     그래서, 문장을 모아두었다가 한번에 접속해서 쿼리를 실행하고 결과를 받아오는 방법!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
