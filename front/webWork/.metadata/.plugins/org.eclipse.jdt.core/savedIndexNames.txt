@@ -1,0 +1,5 @@
+INDEX VERSION 1.132+C:\Edu\webWork\.metadata\.plugins\org.eclipse.jdt.core
+3515862681.index
+2999744132.index
+2509476116.index
+1865797976.index

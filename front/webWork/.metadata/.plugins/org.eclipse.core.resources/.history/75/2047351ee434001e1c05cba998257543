@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<thead>
+		<tr>
+		<th colspan="3">A</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td colspan="2">b</td>
+			<td>c</td>
+		</tr>
+		<tr>
+			<td rowspan="3">d</td>
+			<td colspan="2">e</td>
+		</tr>
+		<tr>
+			<td>f</td>
+			<td>g</td>
+		</tr>
+		<tr>
+			<td>h</td>
+			<td>i</td>
+		</tr>
+		</tbody>
+	</table>
+</body>
+</html>

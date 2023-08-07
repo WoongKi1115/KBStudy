@@ -1,0 +1,210 @@
+- 웹프로그래밍 언어 - 웹브라우져에서 동작하는(실행) 언어 
+ 1) Web FrontEnd
+     - HTML  :   Hyper Text Markup Language
+                 : 화면구성 = GUI
+                 ex) 로그인화면, 가입폼, 게시판폼, 게시판목록, 방명록 , 장바구니화면
+                       주로 사용자 입력값을 받는 폼구성,
+                       사용자가 요청한 결과를 화면폼에 출력 
+                 : version - HTML4 --> HTML5
+                   현재는 HTML5를 사용한다.
+                   HTML5는 다양한 API를 제공
+                      (Web Storage, Drag&Drop, Audio, Vedio,WebSocket....) 
+
+                : 대소문자를 구분하지 않는다. 오타를 내면 그냥 적용 안되고 실행은 된다!!
+
+
+     - CSS  : Cascading Style sheet 의 약자로 HTML에 디자인을 추가한다(화면의 레이아웃- template)
+                CSS를 이용하면 시각적으로 풍부하게 만들수 있다(과거에는 플래쉬나 포토샵을 이용해서
+               시각적으로 풍부하게 만들었으나 요즘에는 CSS3로 대부분 가능하다)  
+
+              : 대소문자를 가린다, 다만 오타를 내면 실행은 되나 css가 적용이 안된다!!
+
+
+     - JavaScript : HTML에 기능(동작=Event)을 추가
+                     대소문자를 완벽하게 구분한다.  - 자바의 개념과 비슷하다(객체기반의 언어로 객체의개념, 메소드 + 속성) 
+                     인터프리터 언어이다.- 소스코드를 한줄씩 해석하면서 오류를 순차적으로 출력해준다) 
+
+       * 결론 : 웹브라우져(IE, 크롬, 파이어폭스, 사파리, 오페라....) 는 기본적으로 3가지 언어만 지원한다 - 브라우져가 해석할수 있는 언어는 3가지
+                 1) HTML로 구조
+                 2) CSS로 표현
+                 3) JavaScript로 동작 
+
+              : Web Front언어의 단점은 소스가 100%로 공개가 된다.
+                CS(Client Side)언어이다. 클라이언트가 가지고 있는 웹브라우져에서 실행되는 언어로 브라우져의 영향을 받는다. - 단점
+                같은 소스라 하더라도 브라우져마다 해석하는 방법이 달라서 실행결과가 달라질 수 있다 - 단점
+
+                  * 이러한 단점을 해결하기 위해서 요즘은 다양한 javaScript기반의 LIB를 제공한다. 
+                    그 중의 대표적인 lib jQuery가 있다. jQuery는 모든 브라우져에서 동일하게 동작할수 있도록 만들어놓은
+                   경량의 javaScripr기반의 lib이다. 
+
+                
+               :   DB연동의 기능이 없다. - 영속성문제 있다. 
+               :  HTML로 사용자 입력한 값을 Back단으로 전송할수 있지만 전송된 다음 페이지에서 그 전송된 데이터를 받을수 있는 능력이 없다.
+               :  웹은 많은 페이지를 이동하는데 이동할때마다 새로운 요청(request, response) 생성되는 것으로 상태정보를 유지할 수 없다.    
+
+                  * 위 3가지의 단점때문에 결국 Web BackdEnd 기술의 언어가 필요하다.  - Servlet&JSP or ASP or PHP 
+
+      
+                  - Static Web Application : HTML, CSS, JavaScript로 이루어진 프로그램
+
+                  - Dynamic Web Application : HTML, CSS, JavaScript + BackEnd 언어 함께  만들어진 프로그램 
+
+
+               
+              * MEAN Stack개발자
+                1)  Mongo DB :  NoSQL(비 관계형 데이터베이스)
+                2)  Express JS  : Angular 와 Node를 중간에 연결해주는 역할 - Controller의 개념
+                3)  Angular JS : View
+                4)  Node JS : BackEnd기술 
+
+  
+               * javaScript가빈의 언어가 새롭게 등장 - js기반으로 만들어놓은 LIB형태 = FrameWork( Model + View + ViewModel) : MVVM
+                      1) Angular.js 1 --> Angular.js  2 : 구글 + 개별 커뮤니티에서 만듦
+                      2) React.js  : 페이스북에서 만듦
+                      3) Vue.js   : EvanYou라는 사람이 개인적으로 만듦 
+
+
+                                 
+
+ 2) Web BackEnd 기술( Servlet&JSP 또는 ASP 또는 PHP) 
+     : 우리는 자바 기바인 Servlet&JSP  학습
+       * Java 영역
+            - Java SE : 응용프로그램 개발
+            - Java EE : 웹프로그램 개발
+            - Java ME : 모바일환경 프로그램 개발 
+
+     : Servlet & JSP (Dynamic Web Application)
+        - JSP문서에서 HTML, CSS, JavaScript 작성 : VIEW 역할
+        - Servlet : Controller 역할
+        - Java SE : Mdel역할 (Service, DAO, DTO=VO,....)
+
+       * 결론 :  웹프로젝트를 진행할 때 MVC구조로 웹사이틀 구축한다. 
+                  DB연동을 해서 데이터 영속성을 유지 할 수 있다. - JDBC를 사용한다. 
+
+               : 웹브라우져는 HTML, css, JavaScript만 해석가능한다.
+                 그렇다면 Servlet&JSP는 누가 해석해주나?? --> 브라우져가 해석못한다.
+                 그래서, BackEnd언어를 해석해서 브라우져가 해석할 수 있는 HTML언어로 변환해주는 Servlet Container=WAS가 필요하다. 
+                   Apache tomcat  = WebServer +Servlet Container(Web Application Server)로 구성되어 있으며 
+                   https://tomcat.apache.org/ 에서  Apache Tomcat을 무료로 이용한다. 
+          
+   
+
+    * Ajax 기술 - 비동기화 통신 = ASynchronous JavaScript And XML 
+        : 화면의 새로고침없이 서버와 통신(XMLHttpRequest)을 해서 그결과를 받아 화면의 일부분을 갱신(update)해주는 기술이다. 
+        : JavaScript언어를 이용해서 서버와 통신을 하고 그결과를 xml형태로 받아서 화면을 갱신한다. 
+           - 요즘은 javaScript는 jQuery로 , xml은 JSON의 형태로 많이 사용한다. 
+
+
+           * HTML(Hyper Text Markup Language) : 이미 DTD에 정의되어 있는 태그만 사용할 수 있다. 
+                : Markup 은 태그로 ( < >) 이루어진 언어를 뜻한다.
+
+           * XML (Extensible Markup Language) - 필요한 태그를 직접 만들어서 사용할수 있다. 
+                 : 서로 다른 언어사이에서 데이터를 주고 받을때 데이터 포맷 형태로 많이 사용한다. 
+                  ex) 
+                     <과일>배</과일>
+                     <운송수단>배</운송수단>
+ 
+                  ex) 게시판을 목록을 뷰쪽으로 전달 
+                      <boards>
+                         <board>
+                              <no>1</no>
+                              <subject>제목</subject>
+                              <content>내용</content>
+                         </board>
+                          <board>
+                              <no>2</no>
+                              <subject>제목</subject>
+                              <content>내용</content>
+                         </board>
+                         <board>
+                              <no>3</no>
+                              <subject>제목</subject>
+                              <content>내용</content>
+                         </board>
+                     </boards>
+
+                     
+                      * xml은 문법이 엄격하고 무겁고 결과를 가져와서 파싱(해석)하는 과정이 복잡하다 - 단점 
+
+                        요즘은 xml형태를 JSON형태로 많이 사용한다. 
+                        JSON의 구조 -->
+                            [{no:1 , subject: "제목", content : "내용"} ,{no:2 , subject: "제목", content : "내용"} ,{} ,..... ]
+
+
+                     * 요즘 xml은 주로
+                         - 설정문서 (configuration)
+                           ex) web.xml , server.xml .....
+
+
+----------------------------------------------------------------------------------------------------------------------
+* 웹프로그래밍을 시작하기 위한 준비
+  1) 웹브라우져 필요( IE, 크롬, 오페라....) : 크롬을 많이 사용한다.
+
+  2) 어디서 코딩할까? : 메모장에서 작성을 하지만 코딩을 손쉽게 할수 있도록 도와주는 
+                             다양한 tool(Visual Studio Code , Aptana Studio, eclipse, Intellij)이 제공된다. 
+                             우리는 eclipse에서 작성!
+
+ 3) 코딩한 코드를 어떻게 실행할까? 
+      : frontEnd언어는 브라우져를 선택하고 브라우져에서 그냥 실행하면된다. 
+          ~.html문서를 더블클릭하면 브라우져에 의해 실행된다.
+         이러한 동작은 local pc에서 그냥 실행하는 것으로 웹서에서 웹서비스가 실행되는것이 아니다. 
+         우리는 파일이 실행될때 local아니라 웹서버(http)에서 동작할수 있도록 Apache tomcat가 필요하다.
+           http://도메인:port/파일이름  실행을 해야만 Apache tomcat에서 동작한다. 
+
+
+       * tomcat.apache.org사이트에 가서 다운로 받는다.  - tomcat 9
+            -다운로드 받을때
+              1) install version : 운영모드에서 권장
+
+              2) 압축 version : 개발모드에서 권장 - 우리는 압축버젼 
+
+
+               주의 : tomcat의 port 번호가 기본 8080이다.
+                       oracle에서 이미 8080 port를 사용하고 있다. 
+                       충돌이 나지 않도록 tomcat의 port를 변경해서 사용한다. 
+                       server.xml 수정
+
+       --------------------------------------------------------------------------------------------
+
+     Dynamic web project directory 구조
+       1) src/main/java  : servlet 과 자바관련 파일 넣는곳( ~.java) 
+
+       2) src/main/wepapp  :  FrontEnd관련 소스들
+                                HTML, css, javaScript 등이 있는 곳
+                                jsp문서 
+
+           * src/main/wepapp 이부분이 웹의 root 이다. 
+
+ 
+        3) src/main/wepap/WEB-INF 폴더에 FrontEnd관련 파일 넣으면 실행안된다!!!
+
+        4)  src/main/wepap/WEB-INF/lib 폴더에 BackEnd관련 lib 넣는곳( ex) 오라클라이브러리 ) 
+
+---------------------------------------------------------------------------------------------------------------------
+   웹 표준에 관련된 레퍼런스 제공
+     : https://www.w3schools.com/
+
+
+  ----------------------------------------------------------------
+  *HTML 시작하기
+   
+  HTML의 기본구조 
+
+   <!DOCTYPE html>  <!-- HTML의 버젼   html만 간략하게 쓰면 HTML5를 뜻함  -->
+
+<html>
+  <head>
+     <title> tab영역 </title>
+  </head>
+<body>
+    <!-- 화면구성을 하는 영역-->
+
+</body>
+</html>
+
+*HTML 태그의 형태
+   <태그이름 속성="값"  속성='값' ....>
+      내용
+   </태그이름>
+
+

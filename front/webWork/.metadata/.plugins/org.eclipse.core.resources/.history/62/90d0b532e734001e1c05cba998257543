@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	img{
+	width:100px;
+	height:80px
+	}
+	
+	.i1 {
+	width:200px;
+	height:160px
+	}
+</style>
+</head>
+<body>
+<!--  경로를 설정할 때는 상대 경로 설정 => 현재 문서의 위치를 기준 -->
+<!-- 상위 폴더 => ../폴더 이름 -->
+<!-- 현재 폴더 => ./ 또는 생략 -->
+<!-- 하위 폴더 => ./폴더 이름 또는 폴더 이름 -->
+<a href="http://www.naver.com">
+	<img class="i1" alt="따봉도치야 고마워" src="./images/aa.jpg">
+</a>
+<a>
+	<img alt="따봉도치야 고마워" src="images/aa.jpg">
+</a>
+</body>
+</html>

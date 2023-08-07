@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> &lt;form&gt;요소&nbsp; 알아보기</h1>
+<!-- 
+action ="전송할 때 이동할 경로"
+name ="form이름"
+method="요청방식"
+ -->
+ <form action="" name="f" method="get"></form>
+</body>
+</html>

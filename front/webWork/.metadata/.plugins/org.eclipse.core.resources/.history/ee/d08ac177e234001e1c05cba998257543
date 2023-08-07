@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>목차 만들기</title>
+</head>
+<body>
+	<h1>순서 있는 목차</h1>
+	<ol type="i">
+		<li>기아 자동차
+			<ul>
+				<li>k3</li>
+				<li>k5</li>
+				<li>k7</li>
+			</ul>
+		</li>
+		<li>현대 자동차</li>
+		<li>삼성 자동차</li>
+	</ol>
+	<hr>
+
+	<h1>순서 없는 목차</h1>
+	<ul>
+		<li>기아 자동차
+			<ul>
+				<li>k3</li>
+				<li>k5</li>
+				<li>k7</li>
+			</ul>
+		</li>
+		<li>현대 자동차</li>
+		<li>삼성 자동차</li>
+	</ul>
+	
+	
+
+	<table>
+		<thead >
+			A
+		</thead>
+		<br/>
+		<tbody>b
+			<tr>c</tr>
+		</tbody>
+		<br/>
+		<tbody>d</tbody>
+		<tbody>e
+		<br/>
+			<tr>
+		</tbody>
+	</table>
+</body>
+</html>

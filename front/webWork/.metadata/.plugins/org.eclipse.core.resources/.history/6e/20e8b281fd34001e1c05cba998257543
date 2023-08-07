@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>IT's KB</title>
+</head>
+<body>
+	<div id="container">
+		<nav>
+			<ul>
+				<li><img alt="logo" src="logo.jpg"></li>
+				<li><a href="personal.html">개인</a></li>
+				<li><a>기업</a></li>
+				<li>로그인</li>
+				<li>회원가입</li>
+			</ul>
+		</nav>
+		<!-- banner 추가 -->
+		<div id="banner">지금 당신의 행복 KB IT's LIFE!</div>
+
+		<div id="main">
+			<div>
+				<img alt="" src="">
+				<h2>제목 1 : main-item 1</h2>
+				<p>main-item1의 주요 내용</p>
+				<button type="button">button 01</button>
+			</div>
+
+			<div>
+				<img alt="" src="">
+				<h2>제목 2 : main-item 2</h2>
+				<p>main-item2의 주요 내용</p>
+				<button type="button">button 02</button>
+			</div>
+
+			<div>
+				<img alt="" src="">
+				<h2>제목 3 : main-item 3</h2>
+				<p>main-item3의 주요 내용</p>
+				<button type="button">button 03</button>
+			</div>
+		</div>
+
+		<footer> </footer>
+	</div>
+
+</body>
+</html>

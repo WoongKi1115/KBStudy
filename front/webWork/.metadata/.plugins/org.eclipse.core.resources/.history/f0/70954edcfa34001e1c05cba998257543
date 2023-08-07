@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<h1> &lt;form&gt;요소&nbsp; 알아보기</h1>
+<!-- 
+action ="전송할 때 이동할 경로"
+name ="form이름" => javascript에서 폼요소 접근할 때 사용
+method="요청방식" get or post 방식
+ get 방식 => 전송된 정보(name=value)를 url 주소에 보이면서 전송
+ 			url 주소?name=value&name=value&....
+ 			url에 다 남으므로 선호되진 않음.
+ post 방식 => 전송된 정보가 request쪽의 body에 숨겨서 전송 
+* form 양식에 기본적으로 name 속성이 필수
+name이 있어야 전송했을 때 값을 전송할 수 있음.
+
+ -->
+ <form action="index.html" name="f" method="get">
+ <label for="id">
+ 	아이디:
+ </label> 
+ <input type="text" name="id" id="id" size="10" maxlength="5"  required="required"> <br>
+ 
+ <label for="pwd">
+ 비밀번호 : 
+ </label>
+ <input type="password" name="pwd" id="pwd" size="20"  placeholder="비밀번호 입력" required="required"> <br>
+ 
+ 이메일 : <input type="email" name="email">
+ <fieldset style="width: 250px;">
+ 	<legend>취미선택</legend>
+ 	<!-- checked를 붙이면 이미 선택된 채로 나옴. -->
+ 	<input type="checkbox" name="hobby" value="산책"> 산책
+ 	<input type="checkbox" name="hobby" vlaue="등산" checked="checked"> 등산
+ 	<input type="checkbox" name="hobby" vlaue="낚시"> 낚시
+ 	<input type="checkbox" name="hobby" vlaue="수면" checked="checked"> 수면
+ </fieldset>
+ 
+ <!-- radio는 반드시 name이 같아야 단일 선택이 된다. -->
+ <fieldset style="width: 250px;">
+ 	<legend>성별</legend>
+ 	<input type="radio" name="gender" value="남">남자
+ 	<input type="radio" name="gender" value="여">여자
+ </fieldset>
+ <hr>
+ 직업
+ <select name="job" size="3" multiple="multiple">
+ 	<option value="0">--선택--</option>
+ 	<option value="1">디자이너</option>
+ 	<option value="2">기획자</option>
+ 	<option value="3">DBA</option>
+ 	<option value="4">강사</option> 	
+ 	<option value="5">개발자</option>
+ </select>
+ <br>
+ <textarea rows="10" cols="20" name="content" placeholder="내용을 입력하세요"></textarea>
+ <br>
+ <hr>
+ 생일: <input type="date" name="birth" min="2023-07-20" max="2023-08-02"><br>
+ <!-- 개발자가 필요에 의해 노출은 되지 않지만 name에 value 설정해서 값을 전송할 수 있음. -->
+ <input type="hidden" name="state" value="yes">
+ <input type="hidden" name="info" value="type">
+ 
+ <!-- file을 사용할 땐 반드시 method가 post여야 함 -->
+첨부파일 : <input type="file" name="file"> <br>
+<input type="button" value="클릭">
+<input type="reset" value="취소">
+<input type="submit" value="전송">
+
+ </form>
+</body>
+</html>

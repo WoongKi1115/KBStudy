@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Edu\webWork\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2999744132.index
+3515862681.index
+785582588.index
+49712236.index
+1372628411.index
+489892203.index

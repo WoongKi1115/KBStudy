@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	img{
+	width:100px;
+	height:80px
+	}
+	
+	.i1 {
+	width:200px;
+	height:160px
+	}
+</style>
+</head>
+<body>
+<!--  경로를 설정할 때는 상대 경로 설정 => 현재 문서의 위치를 기준 -->
+<!-- 상위 폴더 => ../폴더 이름 -->
+<!-- 현재 폴더 => ./ 또는 생략 -->
+<!-- 하위 폴더 => ./폴더 이름 또는 폴더 이름 -->
+<a href="http://www.naver.com">
+	<img class="i1" alt="따봉도치야 고마워" src="./images/aa.jpg">
+</a>
+<a href="./ex02_table.html">
+	<img alt="따봉도치야 고마워" src="images/aa.jpg">
+</a>
+
+<hr>
+<!-- 새로 열릴 URL 주소의 창
+target="_self | _top | _parent | _blank | 창이름 -->
+<a href="http://www.naver.com" target="_blank">네이버</a> 
+<a href="http://www.daum.net">다음</a>
+<a href="http://www.google.com">구글</a>
+<a href="http://www.hrd.go.kr">노동부</a>
+<a href="">중간 영역으로 이동</a>
+<a href="">하단 영영으로 이동</a>
+</body>
+<hr>
+쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>
+쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+
+<h3 id="middle">여기는 중간 영역</h3>
+
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+
+<h3 id="footer">여기는 하단 영역</h3>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>쉬게 해줘 <p>
+힘들어<br>
+살려줘<br>
+</html>

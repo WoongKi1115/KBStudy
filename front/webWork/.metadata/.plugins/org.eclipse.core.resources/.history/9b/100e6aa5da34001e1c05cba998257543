@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>목차 만들기</title>
+</head>
+<body>
+	<h1>순서 있는 목차</h1>
+	
+	<hr>
+	
+	<h1>순서 없는 목차</h1>
+</body>
+</html>

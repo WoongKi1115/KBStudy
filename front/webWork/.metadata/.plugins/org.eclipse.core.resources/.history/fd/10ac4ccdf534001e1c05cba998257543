@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> &lt;form&gt;요소&nbsp; 알아보기</h1>
+<!-- 
+action ="전송할 때 이동할 경로"
+name ="form이름" => javascript에서 폼요소 접근할 때 사용
+method="요청방식"
+* form 양식에 기본적으로 name 속성이 필수
+name이 있어야 전송했을 때 값을 전송할 수 있음.
+
+ -->
+ <form action="" name="f" method="get">
+ <label for="id">
+ 	아이디:
+ </label> 
+ <input type="text" name="id" id="id" size="10" maxlength="5" > <br>
+ 
+ <label for="pwd">
+ 비밀번호 : 
+ </label>
+ <input type="password" name="pwd" id="pwd" size="20"  placeholder="비밀번호 입력"> <br>
+ 
+ <fieldset>
+ 	<legend>취미선택</legend>
+ 	<input type="checkbox" name="" value="산책"> 산책
+ 	<input type="checkbox" name="" vlaue="등산"> 등산
+ 	<input type="checkbox" name="" vlaue="수면"> 수면
+ </fieldset>
+ <br>
+ 
+ 날짜: <input type="date"><br>
+ radio: <input type="radio"> 
+ </form>
+</body>
+</html>

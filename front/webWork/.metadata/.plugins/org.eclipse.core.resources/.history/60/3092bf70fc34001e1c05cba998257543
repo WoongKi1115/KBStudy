@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>IT's KB</title>
+</head>
+<body>
+<div id="container">
+	<nav>
+		<ul>
+			<li>
+			<img alt="logo" src="logo.jpg">
+			</li>
+			<li><a href="">개인</a></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</nav>
+	
+	<main>
+	
+	</main>
+
+	<footer>
+	</footer>
+</div>
+
+</body>
+</html>
