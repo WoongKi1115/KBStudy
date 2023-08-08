@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	/*
+		width=width + padding(좌, 우) + border(좌우)
+		height=height + padding(상, 하) + border(상하)
+		border-sizing에서 border-box로하면 width, height 최대 크기가 지정한 크기로 고정
+	*/
+	
+	.a {
+		width:300px;
+		height:200px;
+		background-color:pink;
+	}
+	.b {
+		width: 300px;
+		height: 200px;
+		background-color:orange;
+		padding:20px;
+		border: 10px red dotted;
+		box-sizing: content-box;
+	}
+</style>
+</head>
+<body>
+	<div class="a">box-sizing 연습</div>
+	<div class="b">box-sizing 연습</div>
+</body>
+</html>

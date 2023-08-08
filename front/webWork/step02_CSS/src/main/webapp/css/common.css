@@ -1,0 +1,90 @@
+/* selector {속성:vlaue; 속성:value} */
+
+/*1. 태그에 적용하기*/
+
+h3 {
+	color:red;
+	background-color:yellow;
+}
+/*2. 여러 태그에 같은 css 적용*/
+
+h1, h3 {
+	font-family:궁서체;
+	font-style:italic;
+}
+
+/*3. id로 적용하기  #id 명 
+	단. id는 중복 불가능. 하나의 element에만 적용
+*/
+
+#a {
+	padding: 20px;
+	
+}
+
+/*4. class 로직 적용하기 
+	여러 개의 element에 적영 가능.
+	한 element에 여러개의 class 적용 가능.
+*/
+
+.a {
+	text-decoration: underline;
+}
+
+.b {
+	width: 500px;
+	height: 150px;
+}
+
+/*6. [] 속성으로 찾기*/
+[type] {border:2px blue dash;}
+[type=password] {border: 5px red double; font-size:15px}
+
+/* $로 끝나는 단어*/
+[name$=d] {
+	background-color:pink;
+}
+
+[name^=n] {
+	background-color:skyblue;
+}
+
+table {
+	width: 800px;
+	height: 500px;
+	border-collapse: collapse;
+	border: 3px skyblue outset;
+}
+	
+td {
+	border: 1px gray solid;
+	text-align: center;
+}
+
+tr {
+	background-color:skyblue;
+}
+
+
+table tr:nth-child(2n+1) td:nth-child(2n+1){
+	background-color: pink;
+}
+
+table tr:nth-child(2n) td:nth-child(2n){
+	background-color: pink;
+}
+/*
+table tr:nth-child(1) {
+	background-color: red;
+	color:white;
+	font-size:20px;
+}
+*/
+table tr td:first-child {
+	width: 100px;
+}
+
+table tr td:last-child {
+	width: 100px;
+}
+

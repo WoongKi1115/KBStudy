@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+ .a{background-color: red}
+ .b{
+ 	background-color: green;
+ 	width:200px;
+ 	height:100px;
+ 	margin-top: 30px;
+ 	margin-bottom: 50px;
+ 	margin-left: 30px;
+ 	margin-right: 40px;
+ 	display: block;
+ }
+ .c{background-color: blue}
+ 
+ img {
+ 	opacity: 0.5;
+ 	border-radius:150px;
+ }
+
+ #a{background-color: red}
+ #b{background-color: green;
+ 	width:300px;
+ 	height:300px;
+ 	margin-top: 30px;
+ 	margin-bottom: 50px;
+ 	margin-left: 30px;
+ 	margin-right: 40px;
+ 	border-radius: 150px;
+ 	text-align: center;
+ 	font-size: 20px;
+ 	color: white;
+ 	opacity: 0.5;
+ 	vertical-align:middle;
+ 	display: table-cell;
+
+ 	}
+ #c{background-color: blue}
+
+
+</style>
+</head>
+<body>
+	<!-- 
+	Inline요소 : 한줄을 차지하지 않고 화면에 표시되는 영역만큼만 차지
+				한줄에 나머지 영역에는 다른 요소가 올 수 있음.
+				ex) span, img, a, input button, label ...
+	block 요소 : 태그 사용해서 요소를 넣었을 대 한줄 전체를 차지
+				해당 요소 넓이가 100%
+				ex) div, h1~h6, p, ul, ol, form, table ...
+	 -->
+	 
+	 <span class="a">span1</span><span class="b">span2</span><span class="c">span3</span>
+	 <hr color="red">
+	 <div class="case">
+	 <div id="a">div1</div><div id="b">div2</div><div id="c">div3</div>
+	 </div>
+	 <img id="b" alt="" src="./aa.jpg">
+
+</body>
+</html>

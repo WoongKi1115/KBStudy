@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+/* selector {속성:vlaue; 속성:value}*/
+
+/*1. 태그에 적용하기*/
+
+h3 {
+	color:red;
+	background-color:yellow;
+}
+/*2. 여러 태그에 같은 css 적용*/
+
+h1, h3 {
+	font-family:궁서체;
+	font-style:italic;
+}
+
+/*3. id로 적용하기  #id 명 
+	단. id는 중복 불가능. 하나의 element에만 적용
+*/
+
+#a {
+	padding: 20px;
+	
+}
+
+/*4. class 로직 적용하기 
+	여러 개의 element에 적영 가능.
+	한 element에 여러개의 class 적용 가능.
+*/
+
+.a {
+	text-decoration: underline;
+}
+
+.b {
+	width: 500px;
+	height: 150px;
+}
+
+/*6. [] 속성으로 찾기*/
+[type] {border:2px blue dash;}
+[type=password] {border: 5px red double; font-size:15px}
+
+/* $로 끝나는 단어*/
+[name$=d] {
+	background-color:pink;
+}
+
+[name^=n] {
+	background-color:skyblue;
+}
+
+table {
+	width: 800px;
+	height: 500px;
+	border-collapse: collapse;
+	border: 3px skyblue outset;
+}
+	
+td {
+	border: 1px gray solid;
+	text-align: center;
+}
+
+tr {
+	background-color:skyblue;
+}
+
+
+table tr:nth-child(2n+1) td:nth-child(2n+1){
+	background-color: pink;
+}
+
+table tr:nth-child(2n) td:nth-child(2n){
+	background-color: pink;
+}
+/*
+table tr:nth-child(1) {
+	background-color: red;
+	color:white;
+	font-size:20px;
+}
+*/
+table tr td:first-child {
+	width: 100px;
+}
+
+table tr td:last-child {
+	width: 100px;
+}
+
+
+</style>
+</head>
+<body>
+<!-- 2. css internal 병합으로 적용하기. -->
+  <h1>안녕하세요</h1>
+  <h3>CSS 적용하는 방법 1</h3>
+  <h3 id="a" class="a, b">CSS 적용하는 방법 1</h3>
+  <h3 class="a">CSS 적용하는 방법 1</h3>
+  
+  <hr>
+  <form action="">
+  	아이디 : <input type="text" name="id"><br>
+    비번 : <input type="password" name="pwdn"><br>
+    이름 : <input type="text" name="name"><br>
+  </form>
+  
+  <hr>
+  <table>
+  <tr>
+     <td>1</td>
+     <td>2</td>
+     <td>3</td>
+  </tr>
+  <tr>
+     <td>4</td>
+     <td>5</td>
+     <td>6</td>
+  </tr>
+  <tr>
+     <td>7</td>
+     <td>8</td>
+     <td>9</td>
+  </tr>
+  <tr>
+     <td>10</td>
+     <td>11</td>
+     <td>12</td>
+  </tr>
+  <tr>
+     <td>13</td>
+     <td>14</td>
+     <td>15</td>
+  </tr>
+  <tr>
+     <td>16</td>
+     <td>17</td>
+     <td>18</td>
+  </tr>
+  <tr>
+     <td>19</td>
+     <td>20</td>
+     <td>21</td>
+  </tr>
+  <tr>
+     <td>22</td>
+     <td>23</td>
+     <td>24</td>
+  </tr>
+  <tr>
+     <td>25</td>
+     <td>26</td>
+     <td>27</td>
+  </tr>
+  <tr>
+     <td>28</td>
+     <td>29</td>
+     <td>30</td>
+  </tr>
+  
+  </table>
+</body>
+</html>
