@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#jumin1").on("keyup",function() {
+			// 숫자 체크
+			numbercheck($(this) );
+			// 자리수 6자리 체크
+			if($(this).val().length==6) {
+				$("#jumin2").focus();
+			}
+		})
+		
+		// 숫자 유무 체크
+		/*
+			isNumber();
+			isNaN() => is Not a Number => 결과가 true이면 숫자x, false이면 숫자O
+		
+			문자열 일부분 추출
+			substr()
+			substring()
+		*/
+		const numbercheck = (obj) => {
+			// obj => input element가 전달
+			let v = obj.val();
+			if (isNaN(v)) {
+				//문자열의 마지막 글자 지우고 나머지 글자를 다시 넣음.
+				let text = v.substr(0, v.length-1);
+				obj.val(text);
+			}
+		}
+	})// ready End
+</script>
+</head>
+
+<body>
+  <h1>on 이벤트 </h1>
+  <h4>주민번호를 이용한 성별 체크</h4>
+  <form>
+   주민번호 : 
+<input type="text" id="jumin1" size="6"/> - <input type="text" id="jumin2" size="7" /> <p/>
+성별 : 
+<input type="radio" value="남자" id="man" disabled name="gender" checked="checked"> 남자
+<input type="radio" value="여자" id="woman" disabled name="gender"> 여자
+
+</form>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//alert(11);
+		//$("*").css("color", "red");
+		//$("li").css("font-family", "궁서체");
+		// chain method
+		/*$("h3, h4").css("border", "5px red solid")
+		.css("color", "blue")
+		.css("background-color", "pink");*/
+		// css({속성:value, 속성:value})의 형태도 가능.
+		//$(".div").css({"border":"3px orange dotted", "color" : "red"});
+		// css({})안에 속성을 넣을 땐 낙타표기법은 묶지 않아도 되지만,
+		// - 표기법 사용시 반드시 묶기.
+		// $("h3").css({"font-family":"궁서체"});
+		
+		$("div ol li:last").css("color", "blue");
+		$("div ol li:first").css("color", "red");
+		
+	});
+</script>
+
+</head>
+<body>
+	
+<h3>jQuery 기본 selector</h3>
+<h4>웹 프로그래밍</h4>
+<div class="div">
+	<ol>
+     	<li>jsp</li>
+		<li id="tag">javaScript</li>
+		<li>jQuery</li>
+		<li>Ajax</li>
+	</ol>
+</div>
+	
+
+</body>
+</html>
