@@ -1,0 +1,48 @@
+상속 vs 구현
+1) 상속 : 여러 객체가 갖는 공통의 속성과 메소드 정의
+2) 구현 : 여러 객체가 공통으로 갖는 메소드의 선언부만 정의.
+            실제 구현객체가 구체화 시키는 용도로 사용
+            설계에 있어서 규격서(메뉴얼) 역할
+
+인터페이스 사용 => pm이 규격서나 매뉴얼로 제공가능
+함수 명을 정해서 보내주고 인터페이스를 implements만 하면 사용 가능하므로.
+interface Remote {
+    void on();
+    void off();
+    void up();
+    void down();
+}
+
+class SamsungRemoe implements Remote {
+    public void on() {
+    // 내부 기능 => 알아서.
+    }
+    public void off() {
+
+    }
+    public void up() {
+
+    }
+    public void down() {
+
+    }
+
+}
+
+WS 05 예제
+WS_03_Sol 프로젝트를 복사해서 새로운 WS_05 만듬
+    : 기존 기능이 배열 대신 ArrayList로 모두 변경.
+      기존에 했던 TestView.java가 잘 실행되는지 확인
+
+    :  신규로 모든 계좌 목록을 리턴하는 메소드 작성
+    :  신규로 잔고 기준으로 정렬한 모든 계좌 목록을 리턴하는 메소드 작성(Comparable Interface 사용)
+
+    :  신규로 사용자 일련번호 기준으로 정렬한 모든 계좌 목록을 리턴하는 메소드 작성
+
+WS 06 예제
+WS_05 완성 후 프로젝트 복사 후 WS_06 만듬
+    :  기본의 AccountDto를 상속 계념을 이용해서 하위 3개의 객체로 만들기. 단 맴버 필드를 모두                private로 은닉, set, get, toString 적용
+
+WS 07 예제
+완성된 WS_06 복사 후 WS_07 만듬
+    :  XxxService를 interface로 변경

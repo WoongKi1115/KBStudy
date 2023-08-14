@@ -1,0 +1,578 @@
+* Sevlet & JSP 시작하기에 앞서....
+Java역사
+  : Applet 개념 
+     - 웹브라우져에서 동작하는 프로그램 만드는것
+     ~.html
+      <applet class="Board.class">
+      </applet>
+
+
+  : Servlet  - 브라우져에서 실행
+     - ~.java로 작성은 하는데 소스안에
+         html, css, js 그대로 사용할 수 있다. 
+         :java의 문법을 모르는 디자이너와 협업하기에는 어러움
+         : java중심으로 코딩  + html, css, js
+
+
+
+  : JSP 탄생(Java Server Page)   - 브라우져에서 실행
+     ~.jsp문서안에 html, css, js 그대로 사용할 수 있다. 
+      스크립트언어 중심으로 코딩  + java
+
+
+ 2010년대....
+   : 디자인패턴에 대한 이슈 !!!!! - 설계도의 중요성 강조
+       - GoF의 디자인패턴, ,SOLID개발원칙에 대한 중요도.
+ 
+   : MVC구조 개념!!! -> Model 2방식 <--> Model 1방식 : 역할 분리 안된 상태 
+
+     1) Model : JAVA(BusinessLogic, Data Access Object, DTO...)
+     2) View  : HTML, CSS, JS , JSP 
+     3) Controller : Servlet 
+        (Model과 View사에서 클라이언트의 요청(request)을 받아
+         Model쪽으로 보내고 다시 그결과 응답(response)를 브라우져로 전송 
+
+-----------------------------------------------------------------------------
+ Servlet 작성법
+  1) HttpSevlet을 상속받는다.
+
+ 2) 반드시 public class로 선언한다. 
+
+ 3) 기능 작성 = 브라우져에서 출력될 내용이나 비니스로직을 실행....
+       메소드를 재정의 
+          -init()
+             : 객체가 생성된 후 최초에 딱 한번 호출되며 생성되는 시점에 해야 할 일을 작성한다. 
+
+          -service(HttpServletRequest request, HttpServetRepsonse response);
+             : 사용자 요청(request)이 들어올때마다 호출된다.
+             : 부모에 정의되어 있는  service 메소드는 사용자 요청이  get방식이면 doGet을 호출
+               하고 post방식이면 doPost를 호출한다. 
+
+
+          -doGet(HttpServletRequest request, HttpServetRepsonse response);
+             :사용자 요청방식이 get방식일때 호출된다
+
+          -doPost(HttpServletRequest request, HttpServetRepsonse response)
+             : 사용자 요청이 post방식일때 호출된다. 
+
+           - destroy() 
+              : 서블릿이 종료될때 호출된다.
+    
+
+ 4) 작성한 servlet문서가 브라우져에서 실행되기위해서  등록(생성) 과정이 필요하다. 
+       : 방법은 두가지 있음.
+     - web.xml문서에 등록하는 방법
+
+
+      - @annotation 방법
+
+-------------------------------------------------------------------
+public class TestServlet extends HttpServet{
+
+   재정의
+}
+
+*브라우져에서 요청
+   http://localhost:8000/contextPath/urlpattern
+
+
+
+응답코드 = status
+  200 : 성공
+  404 : FileNotFoundException 
+  405 : 요청방식을 틀렸을때 
+  400 : bad Request ( parameter로 전송되는 요청에 오류)
+  403 : 인증은 하였으나 권한부족
+  500 : 소스오류....
+
+======================================================
+-페이지 이동방법
+ 1) web Server에서 이동방식
+   -  html 에서 <a href=">이동하기 </a>
+   - javaScript 에서  location.href="url주소"
+
+ 2)  WAS(Servlet Container)에서 이동
+      - redirect 방식
+          : 새로운 request, response 를 생성해서 이동하는 방법
+            response.sendRedirect(String url);
+
+      - forward 방식
+         : 기존의 request, response를 유지하면서 이동하는 방법
+          request.getRequestDispather(String url).forworad(request, response);
+ 
+==========================================
+ -JSP문법 
+ <%
+      java문법 사용= jsp코딩
+
+  %>
+
+-jsp문서에서 사용할수 있는 내장객체 9가지를 제공한다.
+   :자주 사용하는 객체를 미리 만들어서  reference로 제공
+      1) request  : HttpServletRequest
+      2) response  : HttpServletResponse
+      3) session : HttpSession
+      4) application : ServletContxt
+      5) out  : PrintWriter
+
+
+-jsp의 스크립트 요소
+ 1) <%  jsp코딩   %> :
+     :스크립트릿 
+
+ 2)  <%@     %>
+         : page지시어 or taglib선언할때 
+
+ 3)  <%!    %>   
+       : 전역변수 or 메소드 선언할때 
+
+ 4)  <%=    %> 
+      : 출력 ( out.print() 대신) 
+      : 마크업중심으로 코딩하다 변수를 출력해야할때 사용하면 좋다.
+
+ 5) <%--     --%>
+      : jsp코드 전체 주석
+
+----------------------------------------------------------------------
+정보 저장을 위한 영속성  - scope
+pageContext < request < session < application
+
+ * 공통의 메소드 제공
+     1) 정보 저장
+          ~.setAttribute(String name, Object obj);
+
+    2)  정보 조회 
+          Object obj = ~.getAttribute(String name);
+
+
+  ex) 
+     request.setAttribute("id", "king");  //저장
+
+     Object obj = request.getAttribute("id"); //조회
+
+
+
+ -JSP내장객체
+ 1. request  => javax.servlet.http.HttpServlerRequest 
+    => 클라이언트의 요청정보를 서버측에서 사용할때 
+    * String value = request.getParameter(String name) ; 
+        => request로 넘어오는 name에 해당하는 value 값 받기
+  
+    * request.setCharacterEncoding("euc-kr");
+        => request로 넘어오는 한글인코딩 변환
+    
+    * String str [] = request.getParameterValues("hobby"); 
+      => name에 해당하는 value 여러개 일때 사용함.
+
+    *  Enumeration<String> e = request.getParameterNames();
+        => request로 넘오는 name에 대한 정보 가져오기
+      
+    * String ip = request.getRemoteAddr() ; 
+       => 접속한 클라이언트 ip 가져오기
+
+    * Cookie co [] = request.getCookies();
+       => 접속한 클라이언트에 저장된 쿠키정보(클라이언트정보) 가져오기
+
+
+ 2. response =>  javax.servlet.http.HttpServletResponse
+    => 서버가 클라이언트쪽으로 응답처리 할때 사용함.
+    
+    * response.sendRedirect(String url);
+       => 클라이언트의 요청페이지를 URL로 이동시킴.
+
+    * response.addCookie(Cookie co);
+      => 클라이언트쪽에 클라이언트의 정보를 저장함.
+
+   * response.setContentType(String encoding);
+      => 클라이언트쪽에 한글인코딩 설정
+
+   * response.setStatus(int code) ;//
+      => 클라이언트쪽에 상태코드 설정
+         : 상태코드 200 : 정상 (성공)
+                      400 : request요청이 잘못된경우 (bad request)
+                      403 : 인증은 했으나 권한이 부족할때 발생코드
+                      404 : FileNotFoundException 잘못된 경로 인경우
+                      405 : 요청방식 잘못된 경우(get방식, post방식 구분못햇을대)
+                      500 : 소스코드 오류.
+
+     response.setError(int code);
+
+
+ 3. session => HttpSession
+    => 클라이언트의 정보를 서버측에 저장할때 사용함.
+    => 저장된 정보는 브라우져 창이 시작 해서 종료 할때까지
+       저장정보가 유지됨.
+       (일반적으로 로그인 ~ 로그아웃 )
+    => 접속된 각각의 클라이언트마다 생성됨.
+    => 기본 세션의 시간은 30분(1800초)
+
+    * session.setAttribute(String name, Object value);
+      => 세션의 정보를 저장.
+
+    * Object value = session.getAttribute(String name);
+      => 세션의정보가져오기
+
+   * session.setMaxInactiveInterval(int interval);
+      => 세션의 유지되는 시간설정(초단위)
+  
+   * int interval = session.getMaxInactiveInterval(); 
+     => 설정된 세션의 시간 가져옴(초단위)
+
+   * String id = session.getId();
+     => 세션이 생성되면 자동으로 만들어지는 세션아이디
+ 
+   * Enumeration e =session.getAttributeNames();
+     => 세션에저장된 name 가져오기
+
+   * boolean b = session.isNew();
+      => 현재 브라우져창의 세션이 새로운것인지 판별
+         (true면 새로운페이지, false 기존페이지)
+
+   * session.invalidate();
+      => 세션의 모든정보를 지운다.
+
+   * session.removeAttribute(java.lang.String name);
+     => 저장된 세션의 정보중 name에 해당하는 정보 삭제
+
+   *  long time = session.getLastAccessedTime();
+     => 마지막 접속시간
+
+   * long time = session.getCreationTime();
+     => 세션이 시작된 시간.
+
+ 
+ * session을 이용하여 로그아웃기능 만들었을때
+  => 익스플로우의 도구->옵션에 설정된 정보가
+     페이지열때마다 or 자동 으로 설정되었을때
+     페이지의 리플래쉬 기능이 다르다.
+ => 브라우져의 옵션에 상관없이 jsp페이지에서 
+    페이지를 열때마다 리플래쉬 기능을 만들어 주는 방법
+   
+   response.setHeader("Cache-Control","no-cache");
+   response.setHeader("Cache-Control","no-store");//크롬
+ 
+   response.setHeader("Pragma","no-cache"); 
+   response.setDateHeader("Expires",0);
+    * 페이지의 page지시어 다음에 설정한다.
+
+
+ 4. application => ServletContext (프로젝트당 한개만 생성된다)
+     => 특정 정보를 서버가 시작해서 종료될때까지 유지 되도록 함.
+        서버에 대한 정보를 추출과 웹 어플리케이션단위로 상태정보저장
+     
+     * application.setAttribute(String name, Object value);
+         => 정보를 저장하는 기능
+
+    * Object value = application.getAttribute(String name);
+        => name에 해당하는 정보를 가져오는 기능
+
+    * application.removeAttribute(String name);
+       =>  name에 해당하는 정보를 삭제하는 기능
+
+    * application.getRealPath(java.lang.String path);
+       => 실행되는 문서의 경로 가져오는 기능
+   
+    * Enumeration e = application.getAttributeNames();
+      => 저장된 정보의 name 가져오는 기능
+
+  Servlet 문서에서
+     request와  response 객체는 메소드의 인수로 전달되지만
+     그이외의 객체들은 내장객체처럼 사용하려면 직접 만들어야한다.
+    
+     	//HttpSession사용하고 싶다.
+	HttpSession session = request.getSession();
+		
+	//ServletContext
+	ServletContext application = request.getServletContext();
+
+
+
+* Cookie 란?
+  - Cookie => javax.servlet.http.Cookie  
+  => 클라이언트의 정보를 클라이언트 PC에 저장함.
+  => 사용자 측에 대한 정보를 보관해 두었다가 웹서버의 요청에 의해
+     그 정보를 원하는 순간에 사용할 수 있다.
+  => 한번에 4KB 로 용량이 제한되고 300개까지저장가능함.
+     (최대용량 : 4KB * 300 = 1.2MB)
+  =>  작은정보의 형태로 저장되고 오래되면 자동삭제됨. 
+
+    * response.addCookie(Cookie co);
+      => 클라이언트쪽에 클라이언트	의 정보를 저장함.
+
+   * Cookie co [] = request.getCookies();
+       => 접속한 클라이언트에 저장된 쿠키정보(클라이언트정보) 가져오기
+
+   * Cookie 관련 메소드 정리
+     int getMaxAge() => 쿠키의 사용할수 있는 기간에 대한 정보
+     setMaxAge(int max) => 쿠키가 저장되는 기간 설정
+      ex) setMaxAge(0) ; => 쿠키삭제
+          setMaxAge(-1) ; => 
+          쿠키폴더에 파일이 만들어지지 않지만 브라우져가 종료될까지
+          쿠키의 정보는 저장된 상태이고 브라우져를 닫으면 쿠키정보 사라짐.
+          (setMaxAge를 생략하면 -1을 기본)
+          setMaxAge(60*60*24*365)=> 1년
+
+         setValue(Cookie c) => 쿠키정보 수정하기
+          =>쿠키의 정보가 수정되면 setMaxAge도 수정해야만
+            정보의 유효기간이 설정됨.
+      
+     String getName(); => 쿠키설정된 이름 가져오기
+     String getValue();=> 쿠키에 설정된 값 가져오기 
+     
+	
+     setPath(String path) => 쿠키의 유효한 디렉토리 설정
+      ex)setPath("/") => 모든 문서(디렉토리)에서 쿠키사용가능함.
+
+  * Cookie 생성자
+   Cookie(String name, String value);
+   ex)Cookie  cookie = new Cookie("id","8253jang");
+
+-------------------------------------------------------------------
+ * JSP에서 제공되는 액션태그 와 지시자
+- include 지시자
+   <%@ page include file=""   %>
+    => 메인페이지에 다른 페이지를 포함시킴
+    => 소스전체가 메인페이지에 포함됨(서블릿문서 한개생김)
+
+
+ -액션태그
+  1. <jsp:include page=""  />
+     => 메인페이지에 다른 페이지를 포함시킴 
+     => 실행결과가 메인페이지에 포함됨(서블릿문서 각각생김)
+
+  2. <jsp:forward  page="" />
+     => forward에서 지정한 페이지로 이동시킴
+     => 현재페이지에 다른 문서를 열어줌.
+
+
+   *액션태그에서 param 지정하기
+    => include 나 forward는 param태그를 이용하여 값을 넘길수 있음.
+    => ex)<param name="id" value ="jang"  />
+
+    => <jsp:include page=""  >
+         <param name="id" value ="jang"  />
+      </jsp:include>
+
+
+      <jsp:forward page=""  >
+         <param name="id" value ="jang"  />
+      </jsp:forward>
+
+
+
+  3. <jsp:useBean id="" class="" scope="" />
+     <jsp:setProperty name="" property="" />
+     <jsp:getProperty name="" property="" /> 
+    => Beans를 이용할때 사용함.
+      (java문서를 만들어 jsp문서에 java에 있는 메소드나,전역변수
+       에 접근하는 방법)
+
+-----------------------------------------------------------------------------------
+-DBCP기술을 이용한 DB연동
+  => 연결객체(Connection)를  미리 확보해 두고 필요시마다 Client에게 연결해줌.
+     미리 Connection을 연결해 두어 바로바로 연결해줌으로써 속도를 향상시킴.
+
+  => 준비작업
+     1. tomcat.apache.org 사이트에 접속하여 <Resource태그 복사한다.
+      <Resource name="jdbc/myoracle" 
+                auth="Container"
+                type="javax.sql.DataSource" 
+                driverClassName="oracle.jdbc.OracleDriver"
+                url="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"
+                username="jang" 
+                password="jang" 
+                maxActive="20" 
+                maxIdle="10"
+               maxWait="-1"/>
+
+
+
+     2. 복사한 태그를 서버부분의 server.xml문서의 <Context태그 사이에
+        추가한다.
+       <Context ~~>
+      
+        <Resource name="jdbc/myoracle" 
+                auth="Container"
+                type="javax.sql.DataSource" 
+                driverClassName="oracle.jdbc.OracleDriver"
+                url="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"
+                username="jang" 
+                password="jang" 
+                maxActive="20" 
+                maxIdle="10"
+               maxWait="-1"/>
+      
+      </Context>
+
+
+   tip : server.xml문서에 <Resource 태그를 추가하는 경우 만약, 서버에서 프로젝트를 제거한후 
+         다시 추가하여 실행하려면 <Resource 태그를 또 입력해줘야 한다.
+         이러한 번거로움을 피하기 위해서는
+         server영역에 있는 context.xml문서를 복사하여 META-INF 폴더에 context.xml를 넣고
+         context.xml문서안에 <Resource 태그를 추가한다.
+
+
+     *자바코드
+
+      Context initContext = new InitialContext();
+      Context envContext  = (Context)initContext.lookup("java:/comp/env");
+      DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+      Connection conn = ds.getConnection();
+
+
+
+     => 위 문장 변경소스
+      Context ct= new InitialContext();
+      DataSource ds = (DataSource)ct.lookup("java:/comp/env/Resource태그name");
+      Connection conn = ds.getConnection();
+------------------------------------------------------------------------------------------------
+
+  - 표현언어(EL - Expression Language) - 522page
+    => jsp 2.0 새롭게 추가된 스크립요소
+    => 자바 빈즈 속성값을 보다 쉽고 제약을 덜 받는 방법으로
+       사용하기 위해 나옴.
+    => 기본문법
+      - 표현언어는 $시작한다.
+      - 모든 내용은 {표현식} 으로 구성된다.
+      - 표현식에는 기본적으로 변수명 혹은 속성명.메소드 구조로
+        이루어짐.
+      - 표현식에는 정수형, 실수형, 문자열형, 논리형, null 올수있음.
+      - 표현식 연산가능함.
+
+   => 표현언어 연산자
+     - 산술연산자
+         + ,- , *, /(div) , %(mod)
+        ex) ${10 div 2}
+
+    -관계연산자
+      ==(eq) , !=(ne) , >(gt) , <(lt) , >=(ge) , <=(le)
+       ex) ${5 gt 2}
+   
+    - 조건연산자
+      조건식 ? 참 : 거짓
+     
+   - 논리연산자
+      &&(and),  ||(or) , !(not)
+
+  => 표현언어 내장객체
+    -pageScope  => page기본객체에 저장된 속성
+    -reqeustScope =>reqeust기본객체에 저장된 속성
+    -sessionScope => session기본객체에 저장된 속성
+    -applicationScope => application기본객체에 저장된 속성
+
+     -Scope 영역 ( setAttribute() / getAttribute() ) 
+     page< request < session < application
+
+
+     ex) <%=session.getAttriubte("id")%>님
+          ${sessionScope.id}님 -> ${id}
+
+    -param  => 요청 prameter의 name에 해당하는 값 가져옴
+              ex) ${param.name}  = (request.getParameter("name"); ) 
+
+    -pageContext => JSP page 기본객체
+
+  * <jsp:useBean id="bean" class="gaon.EL.ProductBean" />
+    ex) ${bean.num1}  => bean객체의 getNum1()호출됨.
+ 
+----------------------------------------------------------------------------------------
+  
+  - (Jsp Standard Tag Library)
+   => jsp에서 표준으로 자주사용하는 부분을 미리 태그로 만들어
+      놓은것.
+  
+   => 종류
+      코어(core), XML, I18N(국제화) , 데이터베이스(sql), 
+      함수(function)
+
+   => http://jakarta.apache.org 사이트에서 관련 라이브러 다운.
+      다운받은 파일을 압축을 풀면 두개의 라이브러를 
+      lib폴더에 넣는다.
+      ( 사이트에서 왼쪽 메뉴 아래쪽에 /taglibs/ 를 클릭 - http://tomcat.apache.org/taglibs/)
+
+   => jsp문서에서 JSTL을 사용하기 위한 선언방법
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+   
+   
+  => 자주사용하는 코어 JSTL 태그
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+  1. <c:out value="값 | 변수명" escapeXml="true|false" />
+       escapeXml="true" 는 값에 태그 있으면 문자로 출력됨.
+
+     <%=
+      ${}
+
+    <% String name="희정" %>
+  2. <c:set var="이름" value="값" scope="page|request|session|application" />
+     주의 : value의 값은 무조건 String
+            만약 value="${20}" 이면 숫자 20
+                 value="${'20'}" 이면 문자 20 
+                 value="20"  이면 문자 20 
+
+
+
+  3. <c:remove var="이름" />
+
+  4. <c:catch var="이름">
+        예외발생 가능성 코드
+     </c:catch>
+  
+  5. <c:if test="조건식" var="결과저장할이름" >
+        결과가 true일때 실행문장.
+    </c:if>  
+
+ 6. <c:choose>
+      <c:when test="조건식"> 실행문장 </c:when>
+      <c:when test="조건식"> 실행문장 </c:when>
+      <c:when test="조건식"> 실행문장 </c:when>
+      ....
+      <c:otherwise> 위조건이외의 경우 실행문장 </c:otherwise>
+   </c:choose>
+
+
+ 7. <c:forEach var="이름" begin="시작" end="끝" step="단계"
+     items="항목" varStatus="현재상태에대한값" >
+     
+     ${상태나타내는변수.index}
+     ${상태나타내는변수.count}
+     ${이름}
+  
+   </c:forEach>
+
+
+
+ 8. <c:forTokens item="데이터" delims="구분자" var="이름">
+        ${이름}
+    </c:forTokens>
+
+
+ 9. <c:import uri="파일명" var="이름" />
+
+
+ 10. <c:url value="URL주소" var="이름" />
+
+     <c:url value="URL주소" var="이름" >
+         <c:param name="이름"> 값 </c:param>
+     </c:url>
+
+    ex) <a href="${이름}" >클릭</a>
+   
+
+ 11. <c:redirect uri="" >
+         <c:param name="이름"> 값 </c:param>
+     </c:redirect>
+
+
+
+
+
+
+
+
+
+
